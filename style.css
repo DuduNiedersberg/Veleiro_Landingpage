@@ -59,17 +59,8 @@
   transition: color 0.2s, background 0.2s;
   padding: 0.4em 0.7em;
   border-radius: 8px;
-  display: none;
+  /* display: none;  removido para tratar via JS */
 }
-.navbar-links .nav-pt.active,
-.navbar-links .nav-hrx.active {
-  display: block;
-}
-.navbar-links .nav-pt,
-.navbar-links .nav-hrx {
-  display: none;
-}
-.navbar-links .nav-pt { display: block; }
 .navbar-links li a:hover,
 .navbar-links li a:focus {
   background: var(--green-light);
@@ -260,7 +251,6 @@ footer {
   letter-spacing: 0.8px;
 }
 .pt, .hrx { display: none; }
-.pt { display: block; }
 @media (min-width: 700px) {
   .nucleos-grid {
     grid-template-columns: repeat(3, 1fr);
