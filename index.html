@@ -20,12 +20,12 @@
       </div>
       <button class="navbar-toggle" aria-label="Menu">&#9776;</button>
       <ul class="navbar-links">
-        <li><a href="#quem-somos" class="nav-pt">Quem Somos</a><a href="#quem-somos" class="nav-hrx">Wer sinn mir</a></li>
-        <li><a href="#visao" class="nav-pt">Visão Estratégica</a><a href="#visao" class="nav-hrx">Strategische Vision</a></li>
-        <li><a href="#nucleos" class="nav-pt">Núcleos</a><a href="#nucleos" class="nav-hrx">Kerne</a></li>
-        <li><a href="#destaque" class="nav-pt">Projetos</a><a href="#destaque" class="nav-hrx">Projekta</a></li>
-        <li><a href="#empresas" class="nav-pt">Empresas</a><a href="#empresas" class="nav-hrx">Firmen</a></li>
-        <li><a href="#contato" class="nav-pt">Contato</a><a href="#contato" class="nav-hrx">Kontakt</a></li>
+        <li><a href="#quem-somos" class="nav-pt pt">Quem Somos</a><a href="#quem-somos" class="nav-hrx hrx">Wer sinn mir</a></li>
+        <li><a href="#visao" class="nav-pt pt">Visão Estratégica</a><a href="#visao" class="nav-hrx hrx">Strategische Vision</a></li>
+        <li><a href="#nucleos" class="nav-pt pt">Núcleos</a><a href="#nucleos" class="nav-hrx hrx">Kerne</a></li>
+        <li><a href="#destaque" class="nav-pt pt">Projetos</a><a href="#destaque" class="nav-hrx hrx">Projekta</a></li>
+        <li><a href="#empresas" class="nav-pt pt">Empresas</a><a href="#empresas" class="nav-hrx hrx">Firmen</a></li>
+        <li><a href="#contato" class="nav-pt pt">Contato</a><a href="#contato" class="nav-hrx hrx">Kontakt</a></li>
       </ul>
     </div>
   </nav>
@@ -138,8 +138,8 @@
       <h2 class="pt">Contato</h2>
       <h2 class="hrx">Kontakt</h2>
       <ul>
-        <li class="pt"><strong>WhatsApp:</strong> (51) 3564-8808</li>
-        <li class="hrx"><strong>WhatsApp:</strong> (51) 3564-8808</li>
+        <li class="pt"><strong>WhatsApp:</strong> <a href="https://wa.me/555135648808" target="_blank">(51) 3564-8808</a></li>
+        <li class="hrx"><strong>WhatsApp:</strong> <a href="https://wa.me/555135648808" target="_blank">(51) 3564-8808</a></li>
         <li class="pt"><strong>E-mail:</strong> ecossistemaveleiro@gmail.com</li>
         <li class="hrx"><strong>Email:</strong> ecossistemaveleiro@gmail.com</li>
         <li class="pt"><strong>Endereço:</strong> Rua Berlim, 240, Centro - Dois Irmãos/RS</li>
@@ -163,15 +163,24 @@
         document.querySelector('.navbar-links').classList.remove('active');
       })
     );
-    // Idioma
+    // Troca de idioma robusta
     function switchLang(lang) {
-      document.querySelectorAll('.pt').forEach(el => el.style.display = lang === 'pt' ? '' : 'none');
-      document.querySelectorAll('.hrx').forEach(el => el.style.display = lang === 'hrx' ? '' : 'none');
+      // Todos .pt e .hrx ficam ocultos primeiro
+      document.querySelectorAll('.pt, .hrx').forEach(el => el.style.display = 'none');
+      // Exibe só o idioma escolhido
+      document.querySelectorAll('.' + lang).forEach(el => {
+        // Menu deve ser inline-block, títulos block, outros inline ou block conforme
+        if (el.tagName === 'A' || el.classList.contains('cta')) {
+          el.style.display = 'inline-block';
+        } else if (el.tagName.startsWith('H')) {
+          el.style.display = 'block';
+        } else {
+          el.style.display = 'block';
+        }
+      });
+      // Botões ativos
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
       document.getElementById('btn-' + lang).classList.add('active');
-      // Menu
-      document.querySelectorAll('.navbar-links .nav-pt').forEach(el => el.style.display = lang === 'pt' ? '' : 'none');
-      document.querySelectorAll('.navbar-links .nav-hrx').forEach(el => el.style.display = lang === 'hrx' ? '' : 'none');
     }
     document.getElementById('btn-pt').onclick = () => switchLang('pt');
     document.getElementById('btn-hrx').onclick = () => switchLang('hrx');
